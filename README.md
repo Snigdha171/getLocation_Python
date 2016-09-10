@@ -9,4 +9,5 @@ There are 2 scripts required to run this module :
 
 2. location.html - Place this file in the same folder where getLocationonMap.py is present and open it with google chrome. You can see a table with the names of the place that were given as input and their latitude and longitude. Along with this, you will also see the places marked on Google Map on the same page.
 
+Please note, Location.js is a sample file that is created on running getLocationonMap.py and sampleOutput.jpg shows the sample data which appears on the screen after running location.html
 
