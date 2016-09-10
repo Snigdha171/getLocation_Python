@@ -1,0 +1,64 @@
+<html>
+  <!--Name - location.html
+	  Date - September 10, 2016
+	  Desc - This is a html script which is used to display the geoography of the place entered by the user and mark them on the map
+      Author - Snigdha Prakash
+   -->
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script src="Location.js"></script>
+    <script>
+
+      function findLoc() {
+        var defaultGeo = new google.maps.LatLng(28.7041,77.1025)
+        var mapOptions = {
+          zoom: 3,
+          center: defaultGeo,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+        var markers = [];
+		var data = [];
+		//document.write(Location);
+        for ( pos in Location ) {
+            var row = Location[pos];
+			//document.write(row);
+		    window.console && console.log(row);
+            var newGeo = new google.maps.LatLng(row[0], row[1]);
+            var marker = new google.maps.Marker({
+                position: newGeo,
+                map: map,
+                title: row[2]
+            });
+            markers.push(marker);
+			data.push(row[2],row[0],row[1]);
+			var table = document.getElementById("dynamicTable");
+			var tableRow = table.insertRow(-1);
+			var cell1 = tableRow.insertCell(0);
+			var cell2 = tableRow.insertCell(1);
+			var cell3 = tableRow.insertCell(2);
+			cell1.innerHTML = row[2];
+			cell2.innerHTML = row[0];
+			cell3.innerHTML = row[1];
+			//document.write(data);
+        }
+      }
+    </script>
+  </head>
+  <body onload="findLoc()">
+<div id="map_canvas" style="height: 500px"></div>
+</p>
+
+<form>
+	<table border="1" id="dynamicTable">
+		<tr>
+			<th>Name of the place</th>
+			<th>Latitude</th>
+			<th>Longitude</th>
+		</tr>
+	</table>
+</form>
+</body>
+</html>
